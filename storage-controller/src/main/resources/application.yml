@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    storage-platform: # know-streaming 自身数据库的配置
+      jdbc-url: jdbc:mysql://node3:3306/storage_platform?rewriteBatchedStatements=true&useUnicode=true&serverTimezone=Asia/Shanghai&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      maximum-pool-size: 20
+      idle-timeout: 30000
+      connection-test-query: SELECT 1

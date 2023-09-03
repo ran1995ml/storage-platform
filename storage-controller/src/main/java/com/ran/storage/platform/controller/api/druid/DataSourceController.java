@@ -24,6 +24,7 @@ public class DataSourceController {
     @GetMapping(value = "/druid/v1/datasourcs")
     public Result<List<String>> listAllAvailableDataSource() {
         DruidCluster druidCluster = new DruidCluster();
+        druidCluster.setBroker("https://druid.conviva-druid-imply-realtime.gke-shared-1.us-east4.prod.gcp.conviva.com");
         List<String> dataSourceList = dataSourceService.listAllAvailableDataSource(druidCluster);
         return Result.buildSuccess(dataSourceList);
     }

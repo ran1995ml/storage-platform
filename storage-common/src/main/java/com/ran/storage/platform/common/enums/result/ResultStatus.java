@@ -1,6 +1,5 @@
 package com.ran.storage.platform.common.enums.result;
 
-import com.ran.storage.platform.common.constant.Constant;
 import lombok.Getter;
 
 /**
@@ -10,14 +9,18 @@ import lombok.Getter;
  * @since 2023/8/8 16:31
  */
 @Getter
-public enum ResultStatusEnum {
-    SUCCESS(Constant.SUCCESS, "success");
+public enum ResultStatus {
+    SUCCESS(1, "success"),
+
+    FAILED(0, "failed"),
+
+    NOT_EXIST(1001, "not exists");
 
     private final int code;
 
     private final String message;
 
-    ResultStatusEnum(int code, String message) {
+    ResultStatus(int code, String message) {
         this.code = code;
         this.message = message;
     }

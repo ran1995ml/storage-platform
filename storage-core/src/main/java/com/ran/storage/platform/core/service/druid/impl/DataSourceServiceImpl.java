@@ -35,7 +35,8 @@ public class DataSourceServiceImpl implements DataSourceService {
 
     @Override
     public List<String> listAllAvailableDataSource(DruidCluster druidCluster) {
-        String path = String.format("%s/druid/v2/datasources", druidCluster.getRouter());
+
+        String path = "http://druid-gcp.qe2.conviva.com:8888/druid/v2/datasources";
         return restTool.getForObject(path, new HashMap<>(), new TypeReference<List<String>>() {});
     }
 

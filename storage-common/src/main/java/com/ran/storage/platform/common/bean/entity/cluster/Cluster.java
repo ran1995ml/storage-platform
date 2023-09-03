@@ -1,8 +1,10 @@
 package com.ran.storage.platform.common.bean.entity.cluster;
 
+import com.ran.storage.platform.common.bean.entity.node.Node;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Cluster
@@ -16,13 +18,9 @@ public class Cluster {
 
     protected String name;
 
+    protected String type;
+
     protected String description;
 
-    protected String version;
-
-    protected Integer runState;
-
-    protected Date createTime;
-
-    protected Date updateTime;
+    protected List<Node> nodes;
 }

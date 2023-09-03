@@ -11,4 +11,5 @@ import lombok.Data;
 @Data
 public class DataSource {
     public String name;
+
 }

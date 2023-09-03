@@ -11,6 +11,8 @@ import lombok.Data;
  */
 @Data
 public class ClusterDTO extends BaseDTO {
+    protected Long id;
+
     protected String name;
 
     protected String description;

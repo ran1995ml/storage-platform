@@ -24,8 +24,7 @@ public class RestTemplateConfig {
         simpleClientHttpRequestFactory.setConnectTimeout(2 * 60 * 1000);
         simpleClientHttpRequestFactory.setReadTimeout(60 * 1000);
 
-        RestTemplate restTemplate = new RestTemplate(
+        return new RestTemplate(
                 new BufferingClientHttpRequestFactory(simpleClientHttpRequestFactory));
-        return restTemplate;
     }
 }

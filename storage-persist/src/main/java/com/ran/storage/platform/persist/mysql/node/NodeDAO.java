@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
  * @since 2023/9/3 17:34
  */
 @Repository
-public interface NodeDAO extends BaseMapper<NodeDAO> {
+public interface NodeDAO extends BaseMapper<NodePO> {
     void addAndSetId(NodePO nodePO);
 }

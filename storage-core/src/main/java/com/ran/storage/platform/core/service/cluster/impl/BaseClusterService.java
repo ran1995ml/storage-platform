@@ -11,6 +11,7 @@ import com.ran.storage.platform.persist.mysql.cluster.ClusterDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +23,15 @@ import java.util.List;
  * @author rwei
  * @since 2023/8/25 10:45
  */
-@Service
-public class ClusterServiceImpl implements ClusterService {
-    private static final Logger logger = LoggerFactory.getLogger(ClusterServiceImpl.class);
+@Service("baseClusterService")
+public class BaseClusterService implements ClusterService {
+    private static final Logger logger = LoggerFactory.getLogger(BaseClusterService.class);
 
     @Autowired
     private ClusterDAO clusterDAO;
 
     @Autowired
+    @Qualifier("druidNodeService")
     private NodeService nodeService;
 
     @Override
@@ -72,7 +74,7 @@ public class ClusterServiceImpl implements ClusterService {
                 throw new NotExistException("cluster not exists");
             }
         } catch (NotExistException e) {
-
+            logger.error("Error: cluster not exists ", e);
         }
     }
 

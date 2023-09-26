@@ -11,7 +11,7 @@ import com.ran.storage.platform.common.bean.entity.node.Node;
 public interface NodeService {
     Long addNodeToCluster(Node node, Long clusterId);
 
-    void removeNodeFromCluster(Node node, Long nodeId);
+    void removeNodeFromClusterById(Long nodeId);
 
-    Boolean getNodeRunState(Node node);
+    Boolean getNodeRunState(Long nodeId);
 }

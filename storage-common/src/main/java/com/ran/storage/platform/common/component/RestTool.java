@@ -1,6 +1,5 @@
 package com.ran.storage.platform.common.component;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -57,5 +56,11 @@ public class RestTool {
             headers.add(entry.getKey(), entry.getValue());
         }
         return headers;
+    }
+
+    public String getForString(String url, Map<String, String> headers) {
+        ResponseEntity<String> result = restTemplate.exchange(url, HttpMethod.GET,
+                new HttpEntity<>(null, getJsonContentHeaders(headers)), String.class);
+        return result.getBody();
     }
 }

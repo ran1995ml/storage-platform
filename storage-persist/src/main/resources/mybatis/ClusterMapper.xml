@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ran.storage.platform.persist.mysql.cluster.DruidClusterDAO">
-    <resultMap id="DruidClusterMap"           type="com.ran.storage.platform.common.bean.po.cluster.DruidClusterPO">
+<mapper namespace="com.ran.storage.platform.persist.mysql.cluster.ClusterDAO">
+    <resultMap id="ClusterMap"           type="com.ran.storage.platform.common.bean.po.cluster.ClusterPO">
         <id column="id"                       property="id" />
         <result column="create_time"          property="createTime" />
         <result column="update_time"          property="updateTime" />
 
         <result column="name"                 property="name" />
+        <result column="type"                 property="type" />
         <result column="description"          property="description" />
     </resultMap>
 
     <insert id="addAndSetId"
-            parameterType="com.ran.storage.platform.common.bean.po.cluster.DruidClusterPO"
+            parameterType="com.ran.storage.platform.common.bean.po.cluster.ClusterPO"
             useGeneratedKeys="true"
             keyProperty="id">
-        INSERT INTO storage_platform_druid_physical_cluster
-        (name, description)
+        INSERT INTO storage_platform_physical_cluster
+            (name, type, description)
         VALUES
-            (#{name}, #{description})
+            (#{name}, #{type}, #{description})
     </insert>
 </mapper>

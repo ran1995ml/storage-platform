@@ -1,26 +1,25 @@
 package com.ran.storage.platform.common.bean.entity.result;
 
-import com.ran.storage.platform.common.enums.result.ResultStatusEnum;
+import com.ran.storage.platform.common.enums.ResultStatusEnum;
 import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * Result
  *
  * @author rwei
- * @since 2023/8/8 17:37
+ * @since 2023/11/23 17:58
  */
 @Data
-public class Result<T> {
-    private int code;
+public class Result<T> implements Serializable {
+    private static final long serialVersionUID = -6771016784021901099L;
+
+    private Integer code;
 
     private String message;
 
     private T data;
-
-    private Result() {
-        this.code = ResultStatusEnum.SUCCESS.getCode();
-        this.message = ResultStatusEnum.SUCCESS.getMessage();
-    }
 
     public static <T> Result<T> buildSuccess() {
         Result<T> result = new Result<>();

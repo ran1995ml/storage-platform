@@ -11,5 +11,4 @@ public class Constant {
 
     public static final String MYSQL_TABLE_NAME_PREFIX = "storage_platform_";
 
-    public static final Integer SUCCESS = 0;
 }

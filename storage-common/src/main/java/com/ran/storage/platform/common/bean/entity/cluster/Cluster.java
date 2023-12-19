@@ -8,21 +8,19 @@ import java.util.Date;
  * Cluster
  *
  * @author rwei
- * @since 2023/8/2 17:44
+ * @since 2023/11/23 17:36
  */
 @Data
 public class Cluster {
-    protected Long id;
+    private Long id;
 
-    protected String name;
+    private String type;
 
-    protected String description;
+    private String name;
 
-    protected String version;
+    private String description;
 
-    protected Integer runState;
+    private Date createTime;
 
-    protected Date createTime;
-
-    protected Date updateTime;
+    private Date updateTime;
 }

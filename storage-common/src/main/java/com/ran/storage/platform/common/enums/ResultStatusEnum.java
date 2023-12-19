@@ -1,17 +1,18 @@
-package com.ran.storage.platform.common.enums.result;
+package com.ran.storage.platform.common.enums;
 
-import com.ran.storage.platform.common.constant.Constant;
 import lombok.Getter;
 
 /**
- * ResultStatus
+ * ResultStatusEnum
  *
  * @author rwei
- * @since 2023/8/8 16:31
+ * @since 2023/11/24 10:00
  */
 @Getter
 public enum ResultStatusEnum {
-    SUCCESS(Constant.SUCCESS, "success");
+    SUCCESS(0, "success"),
+    FAILED(1, "failed"),
+    ;
 
     private final int code;
 

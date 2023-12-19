@@ -1,24 +1,25 @@
 package com.ran.storage.platform.core.service.cluster;
 
-import com.ran.storage.platform.common.bean.entity.cluster.DruidCluster;
-import com.ran.storage.platform.common.bean.po.cluster.DruidClusterPO;
+import com.ran.storage.platform.common.bean.entity.cluster.Cluster;
+import com.ran.storage.platform.common.bean.entity.result.Result;
+import com.ran.storage.platform.common.bean.po.cluster.ClusterPO;
 
 import java.util.List;
 
 /**
- * DruidClusterService
+ * ClusterService
  *
  * @author rwei
- * @since 2023/8/14 16:18
+ * @since 2023/11/23 17:30
  */
-public interface ClusterService<T> {
-    List<T> listAllClusters();
+public interface ClusterService {
+    Long addCluster(ClusterPO clusterPO);
 
-    Long addCluster(T cluster);
+    List<Cluster> listAllClusters();
 
-    T getClusterById(Long clusterId);
+    Cluster getClusterById(Long clusterId);
 
-    void updateCluster(T cluster);
+    Result<Void> removeClusterById(Long clusterId, String operator);
 
-    void deleteCluster(Long clusterId);
+    void updateClusterById(Long clusterId);
 }

@@ -6,8 +6,8 @@ import java.io.Serializable;
  * BaseDTO
  *
  * @author rwei
- * @since 2023/8/15 16:12
+ * @since 2023/11/24 15:11
  */
 public class BaseDTO implements Serializable {
-    private static final long serialVersionUID = 12796155122381L;
+    private static final long serialVersionUID = 7861489615519826338L;
 }

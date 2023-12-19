@@ -1,26 +1,26 @@
 package com.ran.storage.platform.common.bean.entity.cluster;
 
-import com.ran.storage.platform.common.bean.entity.node.Node;
 import lombok.Data;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Cluster
  *
  * @author rwei
- * @since 2023/8/2 17:44
+ * @since 2023/11/23 17:36
  */
 @Data
 public class Cluster {
-    protected Long id;
+    private Long id;
 
-    protected String name;
+    private String type;
 
-    protected String type;
+    private String name;
 
-    protected String description;
+    private String description;
 
-    protected List<Node> nodes;
+    private Date createTime;
+
+    private Date updateTime;
 }

@@ -8,9 +8,8 @@ import java.io.Serializable;
  * BaseVO
  *
  * @author rwei
- * @since 2023/8/26 22:51
+ * @since 2023/11/24 16:01
  */
 @ToString
 public class BaseVO implements Serializable {
-    private static final long serialVersionUID = 12796155122381L;
 }

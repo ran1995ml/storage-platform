@@ -1,24 +1,18 @@
 package com.ran.storage.platform.common.bean.dto.cluster;
 
-import com.ran.storage.platform.common.bean.dto.BaseDTO;
-import com.ran.storage.platform.common.bean.entity.node.Node;
 import lombok.Data;
-
-import java.util.List;
 
 /**
  * ClusterAddDTO
  *
  * @author rwei
- * @since 2023/8/27 17:04
+ * @since 2023/11/24 15:15
  */
 @Data
-public class ClusterAddDTO extends BaseDTO {
-    private String name;
+public class ClusterAddDTO extends ClusterBaseDTO {
+    protected String name;
 
-    private String description;
+    protected String type;
 
-    private List<Node> nodes;
-
-    private String type;
+    protected String description;
 }

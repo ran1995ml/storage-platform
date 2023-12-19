@@ -7,13 +7,9 @@ import lombok.Data;
  * ClusterDTO
  *
  * @author rwei
- * @since 2023/8/15 16:29
+ * @since 2023/11/24 15:10
  */
 @Data
-public class ClusterDTO extends BaseDTO {
-    protected Long id;
-
-    protected String name;
-
-    protected String description;
+public class ClusterBaseDTO extends BaseDTO {
+    protected String version;
 }

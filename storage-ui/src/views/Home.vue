@@ -30,13 +30,17 @@
           </div>
         </el-card>
       </div>
-      <!--      折线图-->
+      <!--折线图-->
       <el-card style="height: 280px">
-
+        <div ref="echarts1" style="height: 280px"></div>
       </el-card>
       <div class="graph">
-        <el-card style="height: 280px"></el-card>
-        <el-card style="height: 280px"></el-card>
+        <el-card style="height: 260px">
+          <div ref="echarts2" style="height: 260px"></div>
+        </el-card>
+        <el-card style="height: 260px">
+          <div ref="echarts3" style="height: 240px"></div>
+        </el-card>
       </div>
     </el-col>
   </el-row>
@@ -44,6 +48,7 @@
 
 <script>
 import { getData } from '../api'
+import * as echarts from 'echarts'
 export default {
   data() {
     return {
@@ -97,9 +102,109 @@ export default {
   mounted() {
     getData().then(({ data }) => {
       const { tableData } = data.data
-      console.log(tableData)
+      console.log(data.data)
       this.tableData = tableData
+      const echarts1 = echarts.init(this.$refs.echarts1)
+      var echarts1Option = {}
+      const { orderData, userData, videoData } = data.data
+      const xAxis = Object.keys(orderData.data[0])
+      const xAxisData = {
+        data: xAxis
+      }
+      echarts1Option.xAxis = {
+        data: orderData.date
+      }
+      echarts1Option.yAxis = {}
+      echarts1Option.legend = xAxisData
+      echarts1Option.series = []
+      xAxis.forEach(key=>{
+        echarts1Option.series.push({
+          name: key,
+          data: orderData.data.map(item => item[key]),
+          type: 'line'
+        })
+      })
+      console.log(echarts1Option)
+      echarts1.setOption(echarts1Option)
+
+      const echarts2 = echarts.init(this.$refs.echarts2)
+      const echarts2Option = {
+            legend: {
+              // 图例文字颜色
+              textStyle: {
+                color: "#333",
+              },
+            },
+            grid: {
+              left: "20%",
+            },
+            // 提示框
+            tooltip: {
+              trigger: "axis",
+            },
+            xAxis: {
+              type: "category", // 类目轴
+              data: userData.map(item=>item.date),
+              axisLine: {
+                lineStyle: {
+                  color: "#17b3a3",
+                },
+              },
+              axisLabel: {
+                interval: 0,
+                color: "#333",
+              },
+            },
+            yAxis: [
+              {
+                type: "value",
+                axisLine: {
+                  lineStyle: {
+                    color: "#17b3a3",
+                  },
+                },
+              },
+            ],
+            color: ["#2ec7c9", "#b6a2de"],
+            series: [
+              {
+                name: 'new user',
+                data: userData.map(item=>item.new),
+                type: 'bar'
+              },
+              {
+                name: 'active user',
+                data: userData.map(item=>item.active),
+                type: 'bar'
+              }
+            ],
+          }
+      echarts2.setOption(echarts2Option)
+
+      const echarts3 = echarts.init(this.$refs.echarts3)
+      const echarts3Option = {
+            tooltip: {
+              trigger: "item",
+            },
+            color: [
+              "#0f78f4",
+              "#dd536b",
+              "#9462e5",
+              "#a6a6a6",
+              "#e1bb22",
+              "#39c362",
+              "#3ed1cf",
+            ],
+            series: [
+              {
+                data: videoData,
+                type: 'pie'
+              }
+            ],
+          }
+      echarts3.setOption(echarts3Option)
     })
+
   }
 }
 </script>

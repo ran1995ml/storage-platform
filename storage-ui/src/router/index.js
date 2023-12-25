@@ -4,8 +4,9 @@ import Home from '../views/Home.vue'
 import User from '../views/User.vue'
 import Main from '../views/Main.vue'
 import Mall from '../views/Mall.vue'
-import PageOne from "@/views/PageOne"
-import PageTwo from "@/views/PageTwo"
+import PageOne from "../views/PageOne"
+import PageTwo from "../views/PageTwo"
+import Login from '../views/Login'
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,6 +21,10 @@ const routes = [
             { path: 'page1', component: PageOne },
             { path: 'page2', component: PageTwo }
         ]
+    },
+    {
+        path: '/login',
+        component: Login
     }
 ]
 

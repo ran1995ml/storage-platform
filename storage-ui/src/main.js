@@ -6,11 +6,24 @@ import 'element-ui/lib/theme-chalk/index.css';
 import router from './router'
 import store from "./store"
 import './api/mock'
+import Cookie from "js-cookie"
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 // Vue.use(Row)
 // Vue.use(Button)
+
+//全局前置导航守卫
+router.beforeEach((to,from,next)=>{
+  const token = Cookie.get('token')
+  if (!token && to.name !== 'login') {
+    next({ name: 'login' })
+  } else if (token && to.name === 'login') {
+    next({ name: 'home' })
+  } else {
+    next()
+  }
+})
 
 new Vue({
   router,

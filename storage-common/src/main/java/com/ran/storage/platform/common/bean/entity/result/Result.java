@@ -35,4 +35,19 @@ public class Result<T> implements Serializable {
         result.setData(data);
         return result;
     }
+
+    public static <T> Result<T> buildFailure() {
+        Result<T> result = new Result<>();
+        result.setCode(ResultStatusEnum.FAILED.getCode());
+        result.setMessage(ResultStatusEnum.FAILED.getMessage());
+        return result;
+    }
+
+    public static <T> Result<T> buildFailure(T data) {
+        Result<T> result = new Result<>();
+        result.setCode(ResultStatusEnum.FAILED.getCode());
+        result.setMessage(ResultStatusEnum.FAILED.getMessage());
+        result.setData(data);
+        return result;
+    }
 }

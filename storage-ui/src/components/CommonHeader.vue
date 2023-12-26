@@ -7,13 +7,13 @@
 <!--      </el-breadcrumb>-->
     </div>
     <div class="r-content">
-      <el-dropdown>
+      <el-dropdown @command="handleClick">
         <span class="el-dropdown-link">
           <img class="user" src="../assets/images/user-default.png" alt="">
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>Personal</el-dropdown-item>
-          <el-dropdown-item>Logout</el-dropdown-item>
+          <el-dropdown-item command="exit">Logout</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -22,6 +22,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import Cookie from "js-cookie";
 export default {
   data() {
     return {}
@@ -29,6 +30,13 @@ export default {
   methods: {
     handleMenu() {
       this.$store.commit('collapseMenu')
+    },
+    handleClick(command) {
+      if (command === 'exit') {
+        console.log('exit')
+        Cookie.remove('token')
+        this.$router.push('/login')
+      }
     }
   },
   computed: {

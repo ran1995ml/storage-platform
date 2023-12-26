@@ -6,12 +6,13 @@ import Main from '../views/Main.vue'
 import Mall from '../views/Mall.vue'
 import PageOne from "../views/PageOne"
 import PageTwo from "../views/PageTwo"
-import Login from '../views/Login'
+import Login from '../views/Join'
 Vue.use(VueRouter)
 
 const routes = [
     {
         path: '/',
+        name: 'home',
         component: Main,
         redirect: '/home',
         children: [

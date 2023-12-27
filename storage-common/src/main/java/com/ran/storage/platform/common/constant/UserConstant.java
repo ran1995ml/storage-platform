@@ -18,4 +18,6 @@ public class UserConstant {
     public static final Integer USER_SESSION_MAX_INACTIVE_INTERVAL = 60 * 60;
 
     public static final String USER_LOGIN_SESSION_KEY = "X-SSO-STORAGE-PLATFORM-USER";
+
+    public static final Long USER_TOKEN_EXPIRED_TIME = 24 * 60 * 60 * 1000L;
 }

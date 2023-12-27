@@ -3,14 +3,16 @@ package com.ran.storage.platform.common.utils;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import com.ran.storage.platform.common.bean.entity.common.User;
+import com.ran.storage.platform.common.constant.ApiPrefix;
 import com.ran.storage.platform.common.constant.UserConstant;
-import com.ran.storage.platform.common.exception.LoginSecurityException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpMethod;
 
+import java.time.Instant;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * TokenUtils
@@ -46,5 +48,21 @@ public class TokenUtils {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public static boolean isTokenExpired(String token) {
+        Date expiredDate = JWT.decode(token).getExpiresAt();
+        return !Objects.isNull(expiredDate) && expiredDate.before(Date.from(Instant.now()));
+    }
+
+    public static void main(String[] args) {
+        User user = new User();
+        user.setUsername("admin");
+        user.setPassword("admin");
+        String token = sign(user);
+        System.out.println(verify(token));
+        System.out.println(isTokenExpired(token));
+        String format = String.format("%s/**", ApiPrefix.API_V1_PREFIX);
+        System.out.println(format);
     }
 }

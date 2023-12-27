@@ -27,7 +27,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "user/{username}/basic")
+    @GetMapping(value = "/user/{username}/basic")
     @ResponseBody
     public Result<UserDisplayVO> getUserByName(@PathVariable String username) {
         try {

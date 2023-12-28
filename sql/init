@@ -11,3 +11,16 @@ create table storage_platform_physical_cluster
     PRIMARY KEY (`id`),
     UNIQUE KEY `uniq_name` (`name`)
 ) ENGINE=InnoDB COMMENT 'physical cluster information';
+
+
+create table storage_platform_user
+(
+    `id` bigint(20)  NOT NULL AUTO_INCREMENT COMMENT 'primary id',
+    `username` varchar(128) NOT NULL COMMENT 'user name',
+    `password` varchar(128) NOT NULL COMMENT 'user password',
+    `role` varchar(128) NOT NULL COMMENT 'user role, eg:admin,super admin',
+    `create_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `update_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uniq_name` (`username`)
+) ENGINE=InnoDB COMMENT 'physical cluster information';

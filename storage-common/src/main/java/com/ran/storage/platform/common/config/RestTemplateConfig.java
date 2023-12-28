@@ -1,5 +1,6 @@
-package com.ran.storage.platform.common.component;
+package com.ran.storage.platform.common.config;
 
+import com.ran.storage.platform.common.component.RestTool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.ran.storage.platform.controller.config;
+package com.ran.storage.platform.common.config;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.config.GlobalConfig;

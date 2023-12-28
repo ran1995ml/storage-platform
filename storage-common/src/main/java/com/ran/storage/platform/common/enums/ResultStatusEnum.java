@@ -12,6 +12,10 @@ import lombok.Getter;
 public enum ResultStatusEnum {
     SUCCESS(0, "success"),
     FAILED(1, "failed"),
+
+    NOT_EXIST(3001, "not exists"),
+
+    USER_CREDENTIALS_ERROR(4001, "wrong password")
     ;
 
     private final int code;

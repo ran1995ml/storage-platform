@@ -11,4 +11,7 @@ public class Constant {
 
     public static final String MYSQL_TABLE_NAME_PREFIX = "storage_platform_";
 
+    public static final Integer HTTP_UNAUTHORIZED_STATUS_CODE = 401;
+
+    public static final Integer HTTP_OK_STATUS_CODE = 200;
 }

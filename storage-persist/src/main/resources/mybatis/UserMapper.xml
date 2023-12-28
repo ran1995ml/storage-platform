@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ran.storage.platform.persist.mysql.common.UserDAO">
+    <resultMap id="ClusterMap"                type="com.ran.storage.platform.common.bean.po.common.UserPO">
+        <id column="id"                       property="id" />
+        <result column="create_time"          property="createTime" />
+        <result column="update_time"          property="updateTime" />
+
+        <result column="username"             property="username" />
+        <result column="password"             property="password" />
+        <result column="role"                 property="role" />
+    </resultMap>
+
+    <insert id="addAndSetId"
+            parameterType="com.ran.storage.platform.common.bean.po.common.UserPO"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO storage_platform_user
+            (username, password, role)
+        VALUES
+            (#{username}, #{password}, #{role})
+    </insert>
+</mapper>

@@ -5,6 +5,7 @@ import com.ran.storage.platform.common.bean.dto.common.UserRegisterDTO;
 import com.ran.storage.platform.common.bean.entity.common.User;
 import com.ran.storage.platform.common.bean.entity.result.Result;
 import com.ran.storage.platform.common.bean.vo.common.UserDisplayVO;
+import com.ran.storage.platform.common.bean.vo.common.UserLoginVO;
 import com.ran.storage.platform.common.bean.vo.common.UserUpdateRoleDTO;
 import com.ran.storage.platform.common.constant.ApiPrefix;
 import com.ran.storage.platform.common.exception.NotExistException;
@@ -47,10 +48,12 @@ public class UserController {
 
     @PostMapping(value = "/user/login")
     @ResponseBody
-    public Result<Void> login(@RequestBody UserLoginDTO userLoginDTO, HttpServletRequest request) {
+    public Result<UserLoginVO> login(@RequestBody UserLoginDTO userLoginDTO, HttpServletRequest request) {
         try {
-            userService.login(userLoginDTO, request);
-            return Result.buildSuccess();
+            String token = userService.login(userLoginDTO, request);
+            UserLoginVO userLoginVO = ConvertUtils.obj2Obj(userLoginDTO, UserLoginVO.class);
+            userLoginVO.setToken(token);
+            return Result.buildSuccess(userLoginVO);
         } catch (Exception e) {
             return Result.buildFailure();
         }

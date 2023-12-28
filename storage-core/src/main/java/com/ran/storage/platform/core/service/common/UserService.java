@@ -21,7 +21,7 @@ public interface UserService {
 
     Long register(User user);
 
-    void login(UserLoginDTO userLoginDTO, HttpServletRequest request) throws NotExistException, LoginSecurityException;
+    String login(UserLoginDTO userLoginDTO, HttpServletRequest request) throws NotExistException, LoginSecurityException;
 
     void updateRole(User user) throws NotExistException;
 }

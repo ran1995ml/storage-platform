@@ -10,6 +10,7 @@ import com.ran.storage.platform.common.constant.UserConstant;
 import com.ran.storage.platform.common.exception.LoginSecurityException;
 import com.ran.storage.platform.common.exception.NotExistException;
 import com.ran.storage.platform.common.utils.ConvertUtils;
+import com.ran.storage.platform.common.utils.TokenUtils;
 import com.ran.storage.platform.core.service.common.UserService;
 import com.ran.storage.platform.persist.mysql.common.UserDAO;
 import org.slf4j.Logger;
@@ -54,7 +55,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void login(UserLoginDTO userLoginDTO, HttpServletRequest request) throws NotExistException, LoginSecurityException {
+    public String login(UserLoginDTO userLoginDTO, HttpServletRequest request) throws NotExistException, LoginSecurityException {
         User user = getUserByName(userLoginDTO.getUsername());
         if (Objects.isNull(user)) {
             throw new NotExistException(String.format("Non-existent user %s", userLoginDTO.getUsername()));
@@ -69,6 +70,7 @@ public class UserServiceImpl implements UserService {
         session.setMaxInactiveInterval(UserConstant.USER_SESSION_MAX_INACTIVE_INTERVAL);
         session.setAttribute(UserConstant.USER_LOGIN_SESSION_KEY, userLoginDTO.getUsername());
         logger.info("User {} login successfully", userLoginDTO.getUsername());
+        return TokenUtils.sign(user);
     }
 
     @Override

@@ -24,10 +24,6 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
 
     private static final String TOKEN_KEY = "token";
 
-    private void setResponse(HttpServletResponse response) {
-        
-    }
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         if (HttpMethod.OPTIONS.toString().equals(request.getMethod())) {

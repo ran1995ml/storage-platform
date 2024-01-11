@@ -6,5 +6,6 @@ export const getData = () => {
 }
 
 export const getMenu = (data) => {
-    return http.post('/permission/getMenu', data)
+    // return http.post('/permission/getMenu', data)
+    return http.post('http://localhost:8090/storage/v1/user/login', data)
 }

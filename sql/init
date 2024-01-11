@@ -23,4 +23,17 @@ create table storage_platform_user
     `update_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
     UNIQUE KEY `uniq_name` (`username`)
-) ENGINE=InnoDB COMMENT 'physical cluster information';
+) ENGINE=InnoDB COMMENT 'storage platform user';
+
+
+create table storage_platform_operate_log
+(
+    `id` bigint(20)  NOT NULL AUTO_INCREMENT COMMENT 'primary id',
+    `operate_username` varchar(128) NOT NULL COMMENT 'operate user name',
+    `operate_module` varchar(128) NOT NULL COMMENT 'operate module',
+    `operate_type` varchar(128) NOT NULL COMMENT 'operate type',
+    `detail` varchar(128) NOT NULL COMMENT 'detail',
+    `create_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `update_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB COMMENT 'storage platform user operate log';

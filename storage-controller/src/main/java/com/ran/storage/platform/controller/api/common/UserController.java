@@ -1,5 +1,6 @@
 package com.ran.storage.platform.controller.api.common;
 
+import com.ran.storage.platform.common.annotation.OperateLog;
 import com.ran.storage.platform.common.bean.dto.common.UserLoginDTO;
 import com.ran.storage.platform.common.bean.dto.common.UserRegisterDTO;
 import com.ran.storage.platform.common.bean.entity.common.User;
@@ -30,6 +31,7 @@ public class UserController {
 
     @GetMapping(value = "/user/{username}/basic")
     @ResponseBody
+    @OperateLog(module = "user", type = "get", desc = "get user info")
     public Result<UserDisplayVO> getUserByName(@PathVariable String username) {
         try {
             User user = userService.getUserByName(username);

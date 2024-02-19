@@ -1,18 +1,5 @@
 use storage_platform;
 
-create table storage_platform_physical_cluster
-(
-    `id` bigint(20)  NOT NULL AUTO_INCREMENT COMMENT 'primary id',
-    `name` varchar(128) NOT NULL COMMENT 'cluster name',
-    `type` varchar(128) NOT NULL COMMENT 'cluster type, eg:kafka,druid,clickhouse',
-    `description` varchar(128) NOT NULL DEFAULT '' COMMENT 'description',
-    `create_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `update_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `uniq_name` (`name`)
-) ENGINE=InnoDB COMMENT 'physical cluster information';
-
-
 create table storage_platform_user
 (
     `id` bigint(20)  NOT NULL AUTO_INCREMENT COMMENT 'primary id',
@@ -37,3 +24,54 @@ create table storage_platform_operate_log
     `update_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB COMMENT 'storage platform user operate log';
+
+
+create table storage_platform_cluster_basic
+(
+    `id` BIGINT(20)  NOT NULL AUTO_INCREMENT COMMENT 'primary id',
+    `name` VARCHAR(128) NOT NULL COMMENT 'cluster name',
+    `description` VARCHAR(128) COMMENT 'cluster description',
+    `image` VARCHAR(128) COMMENT 'cluster image',
+    `config` TEXT COMMENT 'cluster config',
+    `kubernetes_certificate` TEXT COMMENT 'kubernetes certificate',
+    `kubernetes_namespace` VARCHAR(128) COMMENT 'kubernetes namespace',
+    `create_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `update_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB COMMENT 'storage platform cluster basic info';
+
+
+create table storage_platform_cluster_config
+(
+    `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT 'primary id',
+    `cluster_id` BIGINT(20) NOT NULL COMMENT 'cluster id',
+    `cluster_name` VARCHAR(128) NOT NULL COMMENT 'cluster name',
+    `version` BIGINT(20) NOT NULL COMMENT 'config version',
+    `config` TEXT COMMENT 'cluster configs',
+    `create_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `update_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB COMMENT 'storage platform cluster config info';
+
+
+create table storage_platform_node_basic
+(
+    `id` BIGINT(20)  NOT NULL AUTO_INCREMENT COMMENT 'primary id',
+    `node_name` VARCHAR(128) NOT NULL COMMENT 'node name',
+    `cluster_name` VARCHAR(128) NOT NULL COMMENT 'cluster name',
+    `ip` VARCHAR(128) NOT NULL COMMENT 'ip',
+    `hostname` VARCHAR(128) NOT NULL COMMENT 'host name',
+    `status` VARCHAR(128) NOT NULL COMMENT 'status',
+    `node_type` VARCHAR(128) NOT NULL COMMENT 'node type',
+    `start_time` TIMESTAMP NOT NULL COMMENT 'start time',
+    `failure_count` BIGINT(20) DEFAULT 0 COMMENT 'failure count',
+    `consecutive_failure_count` BIGINT(20) DEFAULT 0 COMMENT 'consecutive failure count',
+    `consecutive_success_count` BIGINT(20) DEFAULT 0 COMMENT 'consecutive failure count',
+    `is_ready` BOOLEAN DEFAULT false comment 'is ready',
+    `is_healthy` BOOLEAN DEFAULT false comment 'is healthy',
+    `create_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `update_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `node_name` (`node_name`)
+) ENGINE=InnoDB COMMENT 'storage platform node info';

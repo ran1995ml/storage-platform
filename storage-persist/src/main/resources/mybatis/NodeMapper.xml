@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ran.storage.platform.persist.mysql.NodeDAO">
+    <resultMap id="DruidClusterMap"                   type="com.ran.storage.platform.common.bean.po.NodePO">
+        <id column="id"                               property="id" />
+        <result column="create_time"                  property="createTime" />
+        <result column="update_time"                  property="updateTime" />
+
+        <result column="node_name"                    property="nodeName" />
+        <result column="cluster_name"                 property="clusterName" />
+        <result column="ip"                           property="ip" />
+        <result column="hostname"                     property="hostname" />
+        <result column="status"                       property="status" />
+        <result column="node_type"                    property="nodeType" />
+        <result column="start_time"                   property="startTime" />
+        <result column="failure_count"                property="failureCount" />
+        <result column="consecutive_failure_count"    property="consecutiveFailureCount" />
+        <result column="consecutive_success_count"    property="consecutiveSuccessCount" />
+        <result column="is_ready"                     property="isReady" />
+        <result column="is_healthy"                   property="isHealthy" />
+    </resultMap>
+
+    <insert id="batchInsert"
+            parameterType="java.util.List"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        <foreach collection="list" item="item" separator=";">
+            INSERT INTO storage_platform_node_basic
+            (node_name, cluster_name, ip, hostname, status, node_type, start_time, failure_count, consecutive_failure_count, consecutive_success_count, is_ready, is_healthy)
+            VALUES
+            (#{item.nodeName}, #{item.clusterName}, #{item.ip}, #{item.hostname}, #{item.status}, #{item.nodeType}, #{item.startTime}, #{item.failureCount}, #{item.consecutiveFailureCount}, #{item.consecutiveSuccessCount}, #{item.isReady}, #{item.isHealthy})
+        </foreach>
+    </insert>
+
+    <update id="deleteByCluster" parameterType="String">
+        DELETE FROM storage_platform_node_basic WHERE cluster_name = #{clusterName}
+    </update>
+
+</mapper>

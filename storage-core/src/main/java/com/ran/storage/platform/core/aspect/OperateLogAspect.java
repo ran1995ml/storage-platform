@@ -1,10 +1,9 @@
 package com.ran.storage.platform.core.aspect;
 
 import com.ran.storage.platform.common.annotation.OperateLog;
-import com.ran.storage.platform.common.bean.po.common.OperateLogPO;
-import com.ran.storage.platform.persist.mysql.common.OperateLogDAO;
+import com.ran.storage.platform.common.bean.po.OperateLogPO;
+import com.ran.storage.platform.persist.mysql.OperateLogDAO;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;

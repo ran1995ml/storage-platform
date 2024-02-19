@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ran.storage.platform.persist.mysql.cluster.ClusterDAO">
-    <resultMap id="ClusterMap"           type="com.ran.storage.platform.common.bean.po.cluster.ClusterPO">
-        <id column="id"                       property="id" />
-        <result column="create_time"          property="createTime" />
-        <result column="update_time"          property="updateTime" />
+<mapper namespace="com.ran.storage.platform.persist.mysql.ClusterDAO">
+    <resultMap id="DruidClusterMap"              type="com.ran.storage.platform.common.bean.po.ClusterPO">
+        <id column="id"                          property="id" />
+        <result column="create_time"             property="createTime" />
+        <result column="update_time"             property="updateTime" />
 
-        <result column="name"                 property="name" />
-        <result column="type"                 property="type" />
-        <result column="description"          property="description" />
+        <result column="name"                    property="name" />
+        <result column="description"             property="description" />
+        <result column="image"                   property="image" />
+        <result column="config"                  property="config" />
+        <result column="kubernetes_certificate"  property="kubernetesCertificate" />
+        <result column="kubernetes_namespace"    property="kubernetesNamespace" />
     </resultMap>
 
     <insert id="addAndSetId"
-            parameterType="com.ran.storage.platform.common.bean.po.cluster.ClusterPO"
+            parameterType="com.ran.storage.platform.common.bean.po.ClusterPO"
             useGeneratedKeys="true"
             keyProperty="id">
-        INSERT INTO storage_platform_physical_cluster
-            (name, type, description)
+        INSERT INTO storage_platform_cluster_basic
+            (name, description, image, config, kubernetes_certificate, kubernetes_namespace)
         VALUES
-            (#{name}, #{type}, #{description})
+            (#{name}, #{description}, #{image}, #{config}, #{kubernetesCertificate}, #{kubernetesNamespace})
     </insert>
 </mapper>
